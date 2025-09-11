@@ -12,6 +12,7 @@ charset-normalizer==3.4.2
 click==8.2.1
 gtts
 yt_dlp
+gtts
 contourpy==1.3.2
 cryptography==45.0.4
 cssselect2==0.8.0
