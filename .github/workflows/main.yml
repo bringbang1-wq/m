@@ -5,7 +5,7 @@ on:
     - cron: "0 */6 * * *"
 
 concurrency:
-  group: final-userbot
+  group: sniper
   cancel-in-progress: false
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 360
 
     steps:
-      - name: Checkout jj code
+      - name: Checkout main code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -65,13 +65,13 @@ jobs:
       - name: حفظ بيانات هذا التشغيل
         if: always()
         run: |
-          git checkout jj
+          git checkout main
           git checkout bot-data-storage 2>/dev/null || git checkout -b bot-data-storage
           echo "jj.py" >> .gitignore
           git add --all
           git commit -m "🤖 Auto-update bot data - $(date +'%Y-%m-%d %H:%M:%S')" || echo "ℹ️ لا توجد تغييرات للحفظ"
           git push origin bot-data-storage --force || echo "❌ فشل رفع البيانات"
-          git checkout jj
+          git checkout main
 
       - name: تاكيد العمليات
         run: |
